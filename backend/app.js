@@ -9,7 +9,7 @@ const connectToMongoDb = require("./connection");
 
 const userRegistration = require("./routes/signup");
 const loginRoutes = require("./routes/login");
-const logoutRoutes = require("./routes/logout");g
+const logoutRoutes = require("./routes/logout");
 const saveJobRoutes = require("./routes/savejob");
 
 const app = express();
