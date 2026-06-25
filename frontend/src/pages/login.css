@@ -1,0 +1,157 @@
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.Login {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+}
+
+.box-1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1e3a8a;
+  color: white;
+}
+
+.logo-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  border-bottom: 2px solid white;
+  padding-bottom: 8px;
+}
+
+#jb-img-icon {
+  width: 95px;
+}
+
+#logo {
+  font-size: 40px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.box-2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f7f6f4;
+  color: black;
+  min-height: 100vh;
+}
+
+.auth-card {
+  width: 380px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.auth-card h1 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.auth-card input {
+  width: 100%;
+  height: 55px;
+  margin-bottom: 18px;
+  padding: 0 18px;
+  border: 1px solid #cfcfcf;
+  border-radius: 6px;
+  font-size: 18px;
+  outline: none;
+  background-color: transparent;
+}
+
+.auth-card input:focus {
+  border-color: #2568ad;
+}
+
+.password-wrapper {
+  width: 100%;
+  position: relative;
+}
+
+.password-wrapper input {
+  padding-right: 55px;
+}
+
+.eye-btn {
+  position: absolute;
+  right: 12px;
+  top: 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.login-btn {
+  width: 100%;
+  height: 55px;
+  background-color: #2b6cb0;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.login-btn:hover {
+  background-color: #1e5b96;
+}
+
+.reset-btn {
+  width: 100%;
+  height: 50px;
+  margin-top: 12px;
+  background-color: white;
+  color: #2b6cb0;
+  border: 1px solid #2b6cb0;
+  border-radius: 5px;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.error {
+  width: 100%;
+  color: #dc2626;
+  background-color: #fee2e2;
+  border: 1px solid #fecaca;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.success-message {
+  width: 100%;
+  color: #15803d;
+  background-color: #dcfce7;
+  border: 1px solid #bbf7d0;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.auth-link {
+  margin-top: 25px;
+  font-size: 17px;
+}
+
+.auth-link a {
+  color: #0b5cab;
+  font-weight: 600;
+}

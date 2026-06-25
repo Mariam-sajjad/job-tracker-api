@@ -3,12 +3,19 @@ const jwt = require("jsonwebtoken");
 
 async function generateNewId(req, res) {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password, confirmPassword } = req.body;
 
-    if (!name || !email || !password) {
+    if (!name || !email || !password || !confirmPassword) {
       return res.status(400).json({
         success: false,
         message: "All fields are required"
+      });
+    }
+
+    if (password !== confirmPassword) {
+      return res.status(400).json({
+        success: false,
+        message: "Password and confirm password do not match"
       });
     }
 
