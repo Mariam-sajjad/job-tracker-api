@@ -3,7 +3,7 @@
   margin: 0;
 }
 
-.Login {
+.Signup {
   display: grid;
   grid-template-columns: 1fr 1fr;
   min-height: 100vh;
@@ -55,7 +55,14 @@
 
 .auth-card h1 {
   font-size: 32px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 17px;
+  color: #555;
+  margin-bottom: 22px;
+  text-align: center;
 }
 
 .auth-card input {
@@ -85,15 +92,22 @@
 
 .eye-btn {
   position: absolute;
-  right: 12px;
-  top: 16px;
-  background: none;
+  right: 14px;
+  top: 13px;
+  background: transparent;
   border: none;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 22px;
+  padding: 0;
+  width: auto;
+  height: auto;
 }
 
-.login-btn {
+.eye-btn:hover {
+  background: transparent;
+}
+
+.signup-btn {
   width: 100%;
   height: 55px;
   background-color: #2b6cb0;
@@ -105,20 +119,8 @@
   cursor: pointer;
 }
 
-.login-btn:hover {
+.signup-btn:hover {
   background-color: #1e5b96;
-}
-
-.reset-btn {
-  width: 100%;
-  height: 50px;
-  margin-top: 12px;
-  background-color: white;
-  color: #2b6cb0;
-  border: 1px solid #2b6cb0;
-  border-radius: 5px;
-  font-size: 17px;
-  cursor: pointer;
 }
 
 .error {
@@ -126,18 +128,6 @@
   color: #dc2626;
   background-color: #fee2e2;
   border: 1px solid #fecaca;
-  padding: 10px;
-  border-radius: 6px;
-  margin-bottom: 15px;
-  text-align: center;
-  font-weight: 500;
-}
-
-.success-message {
-  width: 100%;
-  color: #15803d;
-  background-color: #dcfce7;
-  border: 1px solid #bbf7d0;
   padding: 10px;
   border-radius: 6px;
   margin-bottom: 15px;
