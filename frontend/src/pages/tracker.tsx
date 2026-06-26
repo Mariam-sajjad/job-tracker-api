@@ -179,9 +179,9 @@ function Tracker() {
             minWorkLoad: job.minWorkLoad,
             maxWorkLoad: job.maxWorkLoad,
             published: job.published ? job.published.slice(0, 10) : "",
-            jobDescription: job.jobDescription,
-            status: job.status,
-            yourNote: job.yourNote,
+            jobDescription: job.jobDescription || "",
+            status: job.status || "Wishlist",
+            yourNote: job.yourNote || "",
         });
 
         setEditingJobId(job._id);
@@ -519,7 +519,6 @@ function Tracker() {
                                 placeholder="Write job description"
                                 value={formData.jobDescription}
                                 onChange={handleChange}
-                                required
                             />
 
                             <label>Status</label>
@@ -542,7 +541,6 @@ function Tracker() {
                                 placeholder="Write your notes here"
                                 value={formData.yourNote}
                                 onChange={handleChange}
-                                required
                             />
                         </div>
 
