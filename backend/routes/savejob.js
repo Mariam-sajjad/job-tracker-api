@@ -3,6 +3,7 @@ const express = require("express");
 const {
   createSaveJob,
   getMyJobs,
+   getJobById,
   updateJob,
   deleteJob
 } = require("../controller/savejob");
@@ -14,6 +15,8 @@ const router = express.Router();
 router.post("/", authMiddleware, createSaveJob);
 
 router.get("/", authMiddleware, getMyJobs);
+
+router.get("/:id", authMiddleware, getJobById);
 
 router.patch("/:id", authMiddleware, updateJob);
 

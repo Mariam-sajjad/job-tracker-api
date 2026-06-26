@@ -1,0 +1,62 @@
+.save-job-page {
+  min-height: 100vh;
+  background-color: #f7f6f4;
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.save-job-card {
+  width: 800px;
+  background-color: white;
+  border-radius: 8px;
+  padding: 35px;
+  box-shadow: 6px 6px 0 #1768b5;
+  border: 1px solid #eeeeee;
+}
+
+.back-btn {
+  background-color: transparent;
+  border: none;
+  color: #1f69ad;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.save-job-card h1 {
+  margin: 0 0 25px;
+  font-size: 34px;
+}
+
+.detail-row {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 14px;
+  font-size: 18px;
+}
+
+.detail-row strong {
+  width: 120px;
+}
+
+.detail-section {
+  margin-top: 24px;
+  font-size: 18px;
+}
+
+.detail-section strong {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.detail-section p {
+  line-height: 1.6;
+  margin: 0;
+}
+
+.detail-section a {
+  color: #1f69ad;
+  word-break: break-all;
+}

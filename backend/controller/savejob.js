@@ -48,7 +48,7 @@ async function createSaveJob(req, res) {
       maxWorkLoad,
       published,
       jobDescription,
-      status, // if not sent, schema default will use "Wishlist"
+      status,
       yourNote
     });
 
@@ -73,12 +73,42 @@ async function getMyJobs(req, res) {
 
     const jobs = await SaveJob.find({ userId }).sort({ createdAt: -1 });
 
-    console.log("Saved jobs data:", jobs);
-
     return res.status(200).json({
       success: true,
       totalJobs: jobs.length,
       data: jobs
+    });
+
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Server error",
+      error: error.message
+    });
+  }
+}
+
+/* NEW: Get single saved job by id */
+async function getJobById(req, res) {
+  try {
+    const userId = req.user.id;
+    const { id } = req.params;
+
+    const job = await SaveJob.findOne({
+      _id: id,
+      userId: userId
+    });
+
+    if (!job) {
+      return res.status(404).json({
+        success: false,
+        message: "Job not found or you are not allowed to view it"
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      data: job
     });
 
   } catch (error) {
@@ -98,7 +128,7 @@ async function updateJob(req, res) {
     if (
       req.body.minWorkLoad !== undefined &&
       req.body.maxWorkLoad !== undefined &&
-      req.body.minWorkLoad > req.body.maxWorkLoad
+      Number(req.body.minWorkLoad) > Number(req.body.maxWorkLoad)
     ) {
       return res.status(400).json({
         success: false,
@@ -174,6 +204,7 @@ async function deleteJob(req, res) {
 module.exports = {
   createSaveJob,
   getMyJobs,
+  getJobById,
   updateJob,
   deleteJob
 };
