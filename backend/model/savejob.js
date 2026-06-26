@@ -48,8 +48,8 @@ const saveJobSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        enum: ['Whislist','Applied', 'Interviewing', 'Offered', 'Accepted', 'Rejected'],
-        default:"Whislist"
+        enum: ['Wislist','Applied', 'Interviewing', 'Offered', 'Accepted', 'Rejected'],
+        default:"Wislist"
     },
     yourNote: {
         type: String,
