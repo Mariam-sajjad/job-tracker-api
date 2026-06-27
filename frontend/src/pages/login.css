@@ -3,18 +3,25 @@
   margin: 0;
 }
 
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* Main login layout */
 .Login {
   display: grid;
   grid-template-columns: 1fr 1fr;
   min-height: 100vh;
 }
 
+/* Left logo section */
 .box-1 {
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #1e3a8a;
   color: white;
+  padding: 30px 20px;
 }
 
 .logo-row {
@@ -27,15 +34,16 @@
 }
 
 #jb-img-icon {
-  width: 95px;
+  width: clamp(60px, 8vw, 95px);
 }
 
 #logo {
-  font-size: 40px;
+  font-size: clamp(28px, 4vw, 40px);
   font-weight: 700;
   margin: 0;
 }
 
+/* Right form section */
 .box-2 {
   display: flex;
   justify-content: center;
@@ -43,18 +51,21 @@
   background-color: #f7f6f4;
   color: black;
   min-height: 100vh;
+  padding: 30px 20px;
 }
 
 .auth-card {
-  width: 380px;
+  width: 100%;
+  max-width: 380px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .auth-card h1 {
-  font-size: 32px;
+  font-size: clamp(26px, 5vw, 32px);
   margin-bottom: 20px;
+  text-align: center;
 }
 
 .auth-card input {
@@ -147,9 +158,110 @@
 .auth-link {
   margin-top: 25px;
   font-size: 17px;
+  text-align: center;
 }
 
 .auth-link a {
   color: #0b5cab;
   font-weight: 600;
+}
+
+/* Tablet and mobile */
+@media (max-width: 768px) {
+  .Login {
+    grid-template-columns: 1fr;
+  }
+
+  .box-1 {
+    min-height: 180px;
+  }
+
+  .box-2 {
+    min-height: calc(100vh - 180px);
+    align-items: flex-start;
+    padding-top: 45px;
+  }
+
+  .auth-card {
+    max-width: 420px;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+  .box-1 {
+    min-height: 150px;
+    padding: 25px 15px;
+  }
+
+  .logo-row {
+    gap: 8px;
+  }
+
+  #jb-img-icon {
+    width: 58px;
+  }
+
+  #logo {
+    font-size: 28px;
+  }
+
+  .box-2 {
+    padding: 35px 16px;
+  }
+
+  .auth-card {
+    max-width: 100%;
+  }
+
+  .auth-card h1 {
+    font-size: 26px;
+  }
+
+  .auth-card input {
+    height: 50px;
+    font-size: 16px;
+  }
+
+  .login-btn {
+    height: 50px;
+    font-size: 16px;
+  }
+
+  .reset-btn {
+    height: 48px;
+    font-size: 16px;
+  }
+
+  .auth-link {
+    font-size: 15px;
+  }
+
+  .eye-btn {
+    top: 14px;
+    font-size: 18px;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 360px) {
+  .box-1 {
+    min-height: 130px;
+  }
+
+  #jb-img-icon {
+    width: 48px;
+  }
+
+  #logo {
+    font-size: 24px;
+  }
+
+  .auth-card h1 {
+    font-size: 24px;
+  }
+
+  .auth-card input {
+    padding: 0 14px;
+  }
 }
