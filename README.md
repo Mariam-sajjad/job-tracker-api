@@ -1,90 +1,244 @@
-# Job Tracker API
+# JobTracker
 
-A backend REST API for a personal job application tracker. Users can sign up, log in, and save job listings they're applying to — including company, role, location, workload range, and personal notes — then update or delete entries as their application status changes.
+JobTracker is a full-stack web application that helps users manage and track their job applications in one place. Users can create an account, log in, save job details, organize applications by status, and manage their job search through a clean and responsive dashboard.
 
-Built to practice real authentication (JWT in httpOnly cookies), MongoDB/Mongoose schema design, and ownership-scoped CRUD operations — not mock data or in-memory arrays.
+This project was built to practice real-world full-stack development using React, TypeScript, Node.js, Express, MongoDB, authentication, protected routes, and deployment.
+
+---
+
+## Live Demo
+
+ https://job-tracker-api-smoky.vercel.app
+
+
+Note: The backend is deployed on Render free plan, so the first request may take a few seconds if the server is sleeping.
+
+---
 
 ## Features
 
-- **Authentication** — signup and login with bcrypt password hashing and JWT stored in httpOnly cookies (not localStorage, to reduce XSS risk)
-- **Protected routes** — custom Express middleware verifies the JWT on every job-related request
-- **Job CRUD** — create, read, update, and delete saved jobs, scoped so users can only ever touch their own data
-- **Input validation** — required-field checks and a workload range check (minimum can't exceed maximum) on the server, not just the frontend
-- **Rate limiting** — basic protection against brute-force/spam requests
-- **Environment-aware security** — cookie `secure` flag and CORS origin are driven by environment variables, so the same code runs safely in both local development and production
+* User signup and login
+* JWT-based authentication
+* Protected routes for logged-in users
+* Add new job applications
+* View saved job applications
+* Delete job applications
+* Track job status by columns:
+
+  * Wishlist
+  * Applied
+  * Interviewing
+  * Offered
+  * Accepted
+* Drag and drop jobs between status columns
+* Optional job description and personal notes
+* Responsive design for desktop and mobile
+* Clean dashboard UI
+* Separate frontend and backend deployment
+
+---
 
 ## Tech Stack
 
-- **Runtime:** Node.js, Express
-- **Database:** MongoDB with Mongoose
-- **Auth:** JSON Web Tokens (jsonwebtoken), bcrypt for password hashing, httpOnly cookies (cookie-parser)
-- **Other:** cors, express-rate-limit, dotenv
+### Frontend
 
-## API Endpoints
+* React
+* TypeScript
+* Vite
+* Axios
+* React Router DOM
+* @hello-pangea/dnd
+* CSS
 
-| Method | Endpoint | Auth required | Description |
-|---|---|---|---|
-| POST | `/api/signup` | No | Create a new user account |
-| POST | `/api/login` | No | Log in and receive an auth cookie |
-| POST | `/api/logout` | No | Clear the auth cookie |
-| POST | `/api/save-jobs` | Yes | Save a new job listing |
-| GET | `/api/save-jobs` | Yes | Get all jobs saved by the logged-in user |
-| PATCH | `/api/save-jobs/:id` | Yes | Update a saved job (must be owned by the user) |
-| DELETE | `/api/save-jobs/:id` | Yes | Delete a saved job (must be owned by the user) |
+### Backend
+
+* Node.js
+* Express.js
+* MongoDB
+* Mongoose
+* JWT Authentication
+* bcrypt
+* cookie-parser
+* cors
+* dotenv
+* express-rate-limit
+
+---
 
 ## Project Structure
 
+```bash
+JobTracker/
+│
+├── backend/
+│   ├── controllers/
+│   ├── middleware/
+│   ├── model/
+│   ├── routes/
+│   ├── connection.js
+│   └── app.js
+│
+├── frontend/
+│   ├── src/
+│   │   ├── api/
+│   │   ├── assets/
+│   │   ├── pages/
+│   │   ├── App.tsx
+│   │   └── main.tsx
+│   │
+│   ├── public/
+│   ├── package.json
+│   └── vite.config.ts
+│
+└── README.md
 ```
-.
-├── index.js              # App entry point, middleware, route mounting
-├── connection.js         # MongoDB connection logic
-├── controller/           # Route handler logic
-│   ├── signup.js
-│   ├── login.js
-│   ├── logout.js
-│   └── saveJob.js
-├── routes/                # Express routers
-│   ├── signup.js
-│   ├── login.js
-│   ├── logout.js
-│   └── savejob.js
-├── middleware/
-│   └── auth.js            # JWT verification middleware
-└── model/                  # Mongoose schemas
-    ├── signup.js           # User schema
-    └── savejob.js          # SaveJob schema
+
+---
+
+## Frontend Pages
+
+* Signup page
+* Login page
+* Home page
+* Job tracker dashboard
+* Save job form page
+
+---
+
+## API Endpoints
+
+### Auth Routes
+
+| Method | Endpoint  | Description         |
+| ------ | --------- | ------------------- |
+| POST   | `/signup` | Register a new user |
+| POST   | `/login`  | Login user          |
+| POST   | `/logout` | Logout user         |
+
+### Job Routes
+
+| Method | Endpoint       | Description                |
+| ------ | -------------- | -------------------------- |
+| POST   | `/savejob`     | Add a new job              |
+| GET    | `/savejob`     | Get jobs of logged-in user |
+| DELETE | `/savejob/:id` | Delete a saved job         |
+
+---
+
+## Environment Variables
+
+### Frontend `.env`
+
+```env
+VITE_API_URL=https://job-tracker-jmf6.onrender.com
 ```
 
-## Setup
+### Backend `.env`
 
-1. Clone the repo and install dependencies:
-   ```bash
-   npm install
-   ```
+```env
+PORT=8080
+MONGO_URL=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+CLIENT_URL=https://job-tracker-api-smoky.vercel.app
+```
 
-2. Create a `.env` file in the root:
-   ```
-   PORT=5000
-   MONGO_URL=your_mongodb_connection_string
-   JWT_SECRET=your_long_random_secret
-   CLIENT_URL=http://localhost:5173
-   NODE_ENV=development
-   ```
 
-3. Run the server:
-   ```bash
-   node index.js
-   ```
+## Installation and Setup
 
-The API will be available at `http://localhost:8080`.
+### 1. Clone the repository
 
-## What I'd Improve Next
+```bash
+git clone https://github.com/Mariam-sajjad/job-tracker-api
+```
 
-- Add a whitelist for which fields `PATCH /api/save-jobs/:id` is allowed to update, instead of passing the full request body straight to Mongoose
-- Add automated tests (Jest + Supertest) for the auth flow and CRUD endpoints
-- Add refresh tokens so users aren't logged out every 24 hours
-- Add pagination to `GET /api/save-jobs` for users with a large number of saved jobs
+### 2. Install backend dependencies
+
+```bash
+cd backend
+npm install
+```
+
+### 3. Start backend server
+
+```bash
+npm start
+```
+
+Or if using nodemon:
+
+```bash
+npm run dev
+```
+
+### 4. Install frontend dependencies
+
+```bash
+cd frontend
+npm install
+```
+
+### 5. Start frontend development server
+
+```bash
+npm run dev
+```
+
+---
+
+## Authentication
+
+This project uses JWT-based authentication. After login, the user receives an authentication token, which is used to access protected routes. Only logged-in users can create, view, and delete their own job applications.
+
+---
+
+## Deployment
+
+The frontend is deployed on Vercel.
+
+The backend is deployed on Render.
+
+MongoDB Atlas is used as the cloud database.
+
+---
+
+## What I Learned
+
+While building this project, I practiced:
+
+* Creating REST APIs with Express.js
+* Connecting Node.js with MongoDB using Mongoose
+* Creating schemas and controllers
+* User authentication with JWT
+* Password hashing with bcrypt
+* Protecting routes with middleware
+* Connecting React frontend with backend APIs
+* Handling forms in React with TypeScript
+* Using Axios for API requests
+* Using environment variables
+* Deploying frontend on Vercel
+* Deploying backend on Render
+* Fixing CORS and production API issues
+
+---
+
+## Future Improvements
+
+* Add update job functionality
+* Add search and filter options
+* Add email reminder feature
+* Add job application analytics
+* Add forgot password feature
+* Add Google login
+* Improve dashboard UI
+* Add loading and error states
+
+---
 
 ## Author
 
-Built by Maryam Sajjad as a personal project to practice full-stack authentication and MongoDB integration.
+Maryam Sajjad
+
+BS Information Technology Student
+MERN Stack Learner
+GitHub: https://github.com/Mariam-sajjad
+
